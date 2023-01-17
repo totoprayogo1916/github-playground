@@ -7,18 +7,19 @@ on:
 permissions:
   pull-requests: write
 
+env:
+  COMMENT: >
+    Thank you for your pull request. However, you have submitted your PR on a read-only
+    split of `codeigniter4/CodeIgniter4`. This repository, unfortunately, does
+    not accept PRs. Please submit your PR at https://github.com/codeigniter4/CodeIgniter4
+    repository.<br/><br/>Thank you.
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  ISSUE: ${{ github.event.pull_request.html_url }}
+
 jobs:
   main:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          cd ${{ github.workspace }}
-          gh pr close $ISSUE -c "$COMMENT"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE: ${{ github.event.pull_request.html_url }}
-          COMMENT: >
-            Thank you for your pull request. However, you have submitted your PR on a read-only
-            split of `codeigniter4/CodeIgniter4`. This repository, unfortunately, does
-            not accept PRs. Please submit your PR at https://github.com/codeigniter4/CodeIgniter4
-            repository.<br/><br/>Thank you.
+      - name: Close PR with nice message
+        run: gh pr close ${{ env.ISSUE }} -c "${{ env.COMMENT }}"
+        working-directory: ${{ github.workspace }}
