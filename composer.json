@@ -1,0 +1,15 @@
+{
+    "name": "totoprayogo1916/github-playground",
+    "description": "just test",
+    "keywords": [
+        "CodeIgniter",
+        "Composer",
+        "installer"
+    ],
+    "homepage": "https://github.com/totoprayogo1916/github-playground",
+    "license": "MIT",
+    "type": "project",
+    "require": {
+            "codeigniter/framework": "3.1.*"
+    }
+}
