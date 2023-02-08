@@ -8,7 +8,7 @@
     ],
     "homepage": "https://github.com/totoprayogo1916/github-playground",
     "license": "MIT",
-    "type": "project",
+    "type": "library",
     "require": {
             "codeigniter/framework": "3.1.*"
     }
