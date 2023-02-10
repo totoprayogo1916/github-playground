@@ -1,4 +1,4 @@
-name: Labeling, Merging & Locking
+name: Merging & Locking
 
 on:
   issue_comment:
@@ -16,7 +16,7 @@ jobs:
       startsWith(github.event.comment.body, '/merge') &&
       github.event.comment.user.id == 2387514
     steps:
-      - run: echo "${{ toJSON(github) }}"
+      - run: echo "${{ toJSON(github.event.issue.title) }}"
 #       - name: Squash & Merge
 #         run: gh pr merge ${{ env.ISSUE }} -t "${{ env.COMMENT }}"
 #         working-directory: ${{ github.workspace }}
