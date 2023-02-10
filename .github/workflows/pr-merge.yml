@@ -16,10 +16,9 @@ jobs:
       startsWith(github.event.comment.body, '/merge') &&
       github.event.comment.user.id == 2387514
     steps:
-      - run: echo "${{ toJSON(github.event.issue.title) }}"
-#       - name: Squash & Merge
-#         run: gh pr merge ${{ env.ISSUE }} -t "${{ env.COMMENT }}"
-#         working-directory: ${{ github.workspace }}
-#         env:
-#           ISSUE: ${{ github.event.pull_request.html_url }}
-#           SQUASH_TITLE: "(#${{ github.event.number}}) "
+      - name: Squash & Merge
+        run: gh pr merge ${{ env.ISSUE }} -t ${{ env.SQUASH_TITLE }} -b "" -s
+        working-directory: ${{ github.workspace }}
+        env:
+          ISSUE: ${{ github.event.pull_request.html_url }}
+          SQUASH_TITLE: "(#${{ github.event.number}}) ${{github.event.issue.title}}"
