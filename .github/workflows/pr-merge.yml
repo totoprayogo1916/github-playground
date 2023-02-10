@@ -7,7 +7,9 @@ permissions:
   actions: write
   contents: write
   pull-requests: write
-
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
 jobs:
   squash_merge:
     runs-on: ubuntu-latest
@@ -24,3 +26,4 @@ jobs:
           
       - name: Lock
         run: gh pr lock ${{ github.event.issue.number}}
+        working-directory: ${{ github.workspace }}
