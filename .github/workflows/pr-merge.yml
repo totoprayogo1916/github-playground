@@ -26,5 +26,5 @@ jobs:
           SQUASH_TITLE: "(#${{ github.event.issue.number}}) ${{github.event.issue.title}}"
           
       - name: Lock
-        run: gh pr lock ${{ env.ISSUE }}
+        run: gh pr lock ${{ env.ISSUE }} -r "resolved"
         working-directory: ${{ github.workspace }}
